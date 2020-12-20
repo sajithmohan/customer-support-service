@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "baseUrl": "./src",
+    "target": "ES2019",
+    "types": [
+      "reflect-metadata",
+      "node"
+    ],
+    "noImplicitAny": false,
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "outDir": "./dist",
+    "paths": {
+      "@api/*": [
+        "api/*"
+      ],
+      "@application/*": [
+        "application/*"
+      ],
+      "@domain/*": [
+        "domain/*"
+      ],
+      "@infrastructure/*": [
+        "infrastructure/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
