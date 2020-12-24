@@ -4,11 +4,14 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
   ],
-  rules:{
+  rules: {
     "@typescript-eslint/semi": "off",
     "class-methods-use-this": "off",
     "semi": [2, "never"],
-    "@typescript-eslint/no-empty-function": { "allow": ["private-constructors"] }
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["private-constructors"] }],
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   parserOptions: {
     project: './tsconfig.json'

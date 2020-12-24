@@ -1,0 +1,21 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  customer-support-service:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../src:/usr/src/customer-support-service/src
+
+  postgres:
+    image: postgres:9.6
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: customer-support-service
+    ports:
+      - "5432:5432"

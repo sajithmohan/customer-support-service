@@ -10,6 +10,7 @@
     ],
     "noImplicitAny": false,
     "allowJs": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictNullChecks": true,
@@ -30,6 +31,7 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "config.ts"
   ]
 }
