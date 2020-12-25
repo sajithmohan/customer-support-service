@@ -1,9 +1,10 @@
-import JoinCustomerSupport from '@application/JoinCustomerSupport'
 import Handler from 'utils/messaging/Handler'
 import pino, { Logger } from 'pino'
 import MessageBus from 'utils/messaging/MessageBus'
-import CustomerSupportAgent from '../domain/CustomerSupportAgent/CustomerSupportAgent'
-import CustomerSupportAgentRepository from '../domain/CustomerSupportAgent/CustomerSupportAgentRepository'
+
+import JoinCustomerSupport from '@application/agent/JoinCustomerSupport'
+import CustomerSupportAgent from '@domain/CustomerSupportAgent/CustomerSupportAgent'
+import CustomerSupportAgentRepository from '@domain/CustomerSupportAgent/CustomerSupportAgentRepository'
 import CustomerSupportAgentAlreadyExists from './CustomerSupportAgentAlreadyExists'
 
 class JoinCustomerSupportHandler implements Handler<JoinCustomerSupport> {

@@ -7,6 +7,10 @@ class CustomerSupportAgentJoined extends Message {
       id: id.value,
     })
   }
+
+  public get id(): CustomerSupportAgentId {
+    return CustomerSupportAgentId.fromString(this.payload.id)
+  }
 }
 
 export default CustomerSupportAgentJoined

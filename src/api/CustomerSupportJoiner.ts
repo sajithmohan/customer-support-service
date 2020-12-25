@@ -3,11 +3,11 @@ import {
 } from 'inversify-restify-utils'
 import { injectable } from 'inversify'
 import { Request, Response, plugins } from 'restify'
-import JoinCustomerSupport from '@application/JoinCustomerSupport'
 import MessageBus from 'utils/messaging/MessageBus'
 import * as errors from 'restify-errors'
+import JoinCustomerSupport from '@application/agent/JoinCustomerSupport'
 import CustomerSupportAgentId from '../domain/CustomerSupportAgent/CustomerSupportAgentId'
-import CustomerSupportAgentAlreadyExists from '../application/CustomerSupportAgentAlreadyExists'
+import CustomerSupportAgentAlreadyExists from '../application/agent/CustomerSupportAgentAlreadyExists'
 
 @Controller('/customer-support-agents')
 @injectable()

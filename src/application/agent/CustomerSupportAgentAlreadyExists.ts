@@ -1,4 +1,4 @@
-import CustomerSupportAgentId from '../domain/CustomerSupportAgent/CustomerSupportAgentId'
+import CustomerSupportAgentId from '../../domain/CustomerSupportAgent/CustomerSupportAgentId'
 
 class CustomerSupportAgentAlreadyExists extends Error {
   private constructor(message?: string) {

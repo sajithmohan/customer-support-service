@@ -1,5 +1,5 @@
+import CustomerSupportAgentId from '@domain/CustomerSupportAgent/CustomerSupportAgentId'
 import Message from 'utils/messaging/Message'
-import CustomerSupportAgentId from '../domain/CustomerSupportAgent/CustomerSupportAgentId'
 
 class JoinCustomerSupport extends Message {
   public static createFrom(id: CustomerSupportAgentId): JoinCustomerSupport {

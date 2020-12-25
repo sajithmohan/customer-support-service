@@ -3,8 +3,10 @@ import MessageBus from 'utils/messaging/MessageBus'
 import EventEmitterMessageBus from 'utils/messaging/EventEmitterMessageBus'
 import CustomerSupportAgentRepository from '@domain/CustomerSupportAgent/CustomerSupportAgentRepository'
 import knex from 'knex'
+import CustomerSupportIssueRepository from '@domain/CustomerSupportAgent/CustomerSupportIssueRepository'
 import KnexCustomerSupportAgentRepository from './KnexCustomerSupportAgentRepository'
 import config from '../../config'
+import KnexCustomerSupportIssueRepository from './KnexCustomerSupportIssueRepository'
 
 const infraContainerModule = new ContainerModule(
   (bind: interfaces.Bind) => {
@@ -25,6 +27,14 @@ const infraContainerModule = new ContainerModule(
         const db = context.container.get<knex>(knex)
         return new KnexCustomerSupportAgentRepository(
           db, config.postgres.tables.customer_support_agents,
+        )
+      }).inSingletonScope()
+
+    bind<CustomerSupportIssueRepository>(CustomerSupportIssueRepository)
+      .toDynamicValue((context) => {
+        const db = context.container.get<knex>(knex)
+        return new KnexCustomerSupportIssueRepository(
+          db, config.postgres.tables.customer_support_issues,
         )
       }).inSingletonScope()
   },

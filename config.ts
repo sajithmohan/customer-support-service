@@ -7,6 +7,7 @@ export default {
     password: 'dev',
     tables: {
       customer_support_agents: 'customer_support_agents',
+      customer_support_issues: 'customer_support_issues',
     },
   },
 }

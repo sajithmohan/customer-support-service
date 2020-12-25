@@ -23,6 +23,15 @@ export default class CustomerSupportAgent extends AggregateRoot {
     return instance
   }
 
+  public assign(): void {
+    this._availability = CustomerSupportAgentAvailability.assigned()
+    // TODO: instance.addToDomainEvents(CustomerSupportAgentAssignedToAnIssue)
+  }
+
+  public release(): void {
+    this._availability = CustomerSupportAgentAvailability.available()
+  }
+
   // TODO: leave()
 
   get id(): CustomerSupportAgentId {
