@@ -5,7 +5,7 @@ export default class CustomerSupportIssueState {
 
   public static readonly ASSIGNED = 'ASSIGNED'
 
-  public static readonly COMPLETED = 'COMPLETED'
+  public static readonly RESOLVED = 'RESOLVED'
 
   private constructor() {
 
@@ -15,7 +15,7 @@ export default class CustomerSupportIssueState {
     const allowed = [
       this.OPENED,
       this.ASSIGNED,
-      this.COMPLETED,
+      this.RESOLVED,
     ]
     if (!allowed.includes(value)) {
       throw TypeError('Invalid availability value')
@@ -33,8 +33,8 @@ export default class CustomerSupportIssueState {
     return this.fromString(this.ASSIGNED)
   }
 
-  public static completed(): CustomerSupportIssueState {
-    return this.fromString(this.COMPLETED)
+  public static resolved(): CustomerSupportIssueState {
+    return this.fromString(this.RESOLVED)
   }
 
   isOpen(): boolean {
@@ -45,8 +45,8 @@ export default class CustomerSupportIssueState {
     return this._value === CustomerSupportIssueState.ASSIGNED
   }
 
-  isCompleted(): boolean {
-    return this._value === CustomerSupportIssueState.COMPLETED
+  isResolved(): boolean {
+    return this._value === CustomerSupportIssueState.RESOLVED
   }
 
   get value(): string {

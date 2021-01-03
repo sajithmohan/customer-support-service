@@ -15,7 +15,8 @@ class OpenCustomerSupportIssueHandler implements Handler<OpenCustomerSupportIssu
   async handle(message: OpenCustomerSupportIssue): Promise<void> {
     try {
       this._logger.debug('OpenCustomerSupportIssue command triggered')
-      const issue = CustomerSupportIssue.Open(
+      const issue = CustomerSupportIssue.report(
+        message.id,
         message.customerId,
         message.title,
         message.description,

@@ -1,8 +1,9 @@
 import CustomerSupportJoiner from '@api/CustomerSupportJoiner'
-import CustomerSupportIssueOpener from '@api/CustomerSupportIssueOpener'
+import CustomerSupportIssueReporter from '@api/CustomerSupportIssueReporter'
 import { ContainerModule } from 'inversify'
 import { TYPE, interfaces } from 'inversify-restify-utils'
 import MessageBus from 'utils/messaging/MessageBus'
+import CustomerSupportIssueResolver from '@api/CustomerSupportIssueResolver'
 
 const apiContainerModule = new ContainerModule(
   (bind) => {
@@ -15,8 +16,14 @@ const apiContainerModule = new ContainerModule(
     bind<interfaces.Controller>(TYPE.Controller)
       .toDynamicValue((context) => {
         const bus = context.container.get<MessageBus>('CommandBus')
-        return new CustomerSupportIssueOpener(bus)
-      }).whenTargetNamed(CustomerSupportIssueOpener.name)
+        return new CustomerSupportIssueReporter(bus)
+      }).whenTargetNamed(CustomerSupportIssueReporter.name)
+
+    bind<interfaces.Controller>(TYPE.Controller)
+      .toDynamicValue((context) => {
+        const bus = context.container.get<MessageBus>('CommandBus')
+        return new CustomerSupportIssueResolver(bus)
+      }).whenTargetNamed(CustomerSupportIssueResolver.name)
   },
 )
 export default apiContainerModule

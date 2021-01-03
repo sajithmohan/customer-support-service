@@ -3,9 +3,10 @@ import CustomerSupportAgentRepository from '@domain/CustomerSupportAgent/Custome
 import pino, { Logger } from 'pino'
 import MessageBus from 'utils/messaging/MessageBus'
 import MakeCustomerSupportAgentStatusAssigned from './MakeCustomerSupportAgentStatusAssigned'
+import MakeCustomerSupportAgentStatusAvailable from './MakeCustomerSupportAgentStatusAvailable'
 
 // eslint-disable-next-line max-len
-class MakeCustomerSupportAgentStatusAssignedHandler implements Handler<MakeCustomerSupportAgentStatusAssigned> {
+class MakeCustomerSupportAgentStatusAvailableHandler implements Handler<MakeCustomerSupportAgentStatusAvailable> {
   private _logger: Logger
 
   constructor(private _bus: MessageBus, private _repo: CustomerSupportAgentRepository) {
@@ -15,7 +16,7 @@ class MakeCustomerSupportAgentStatusAssignedHandler implements Handler<MakeCusto
   async handle(message: MakeCustomerSupportAgentStatusAssigned): Promise<void> {
     try {
       const agent = await this._repo.get(message.id)
-      agent.makeAssigned()
+      agent.makeAvailable()
       await this._repo.save(agent)
       await agent.publishDomainEvents(this._bus)
     } catch (error) {
@@ -24,4 +25,4 @@ class MakeCustomerSupportAgentStatusAssignedHandler implements Handler<MakeCusto
     }
   }
 }
-export default MakeCustomerSupportAgentStatusAssignedHandler
+export default MakeCustomerSupportAgentStatusAvailableHandler

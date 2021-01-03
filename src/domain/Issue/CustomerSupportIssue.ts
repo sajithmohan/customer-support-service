@@ -4,10 +4,11 @@ import CustomerSupportIssueAssigned from '@domain/Issue/CustomerSupportIssueAssi
 import AggregateRoot from '../AggregateRoot'
 import CustomerId from '../CustomerId'
 import CustomerSupportIssueDescription from './CustomerSupportIssueDescription'
-import CustomerSupportIssueOpened from './CustomerSupportIssueOpened'
+import CustomerSupportIssueReported from './CustomerSupportIssueReported'
 import CustomerSupportIssueState from './CustomerSupportIssueState'
 import CustomerSupportIssueId from './CustomerSupportIssueId'
 import CustomerSupportAgentId from '../CustomerSupportAgent/CustomerSupportAgentId'
+import CustomerSupportIssueResolved from './CustomerSupportIssueResolved'
 
 class CustomerSupportIssue extends AggregateRoot {
   private _id: CustomerSupportIssueId
@@ -26,25 +27,34 @@ class CustomerSupportIssue extends AggregateRoot {
     super()
   }
 
-  public static Open(
+  public static report(
+    id: CustomerSupportIssueId,
     customerId: CustomerId,
     title: CustomerSupportIssueTitle,
     description: CustomerSupportIssueDescription,
   ): CustomerSupportIssue {
-    const id = CustomerSupportIssueId.generate()
     const instance = new this()
     instance._id = id
     instance._customerId = customerId
     instance._title = title
     instance._description = description
     instance._state = CustomerSupportIssueState.opened()
-    instance.addToDomainEvents(CustomerSupportIssueOpened.with(
+    instance.addToDomainEvents(CustomerSupportIssueReported.with(
       id,
       customerId,
       title,
       description,
     ))
     return instance
+  }
+
+  resolve(): void {
+    if (!this._state.isAssigned() || this.assignedAgentId == null) {
+      // TODO:  InvalidStateChangeException
+      throw Error('Invalid state change')
+    }
+    this._state = CustomerSupportIssueState.resolved()
+    this.addToDomainEvents(CustomerSupportIssueResolved.with(this.id, this.assignedAgentId))
   }
 
   public assignCustomerSupportAgent(agentId: CustomerSupportAgentId): void {

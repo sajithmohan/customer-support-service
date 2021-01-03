@@ -4,13 +4,13 @@ import Message from 'utils/messaging/Message'
 import CustomerSupportIssueDescription from './CustomerSupportIssueDescription'
 import CustomerSupportIssueId from './CustomerSupportIssueId'
 
-class CustomerSupportIssueOpened extends Message {
+class CustomerSupportIssueReported extends Message {
   public static with(
     id: CustomerSupportIssueId,
     customerId: CustomerId,
     title: CustomerSupportIssueTitle,
     description: CustomerSupportIssueDescription,
-  ): CustomerSupportIssueOpened {
+  ): CustomerSupportIssueReported {
     return new this({
       id: id.value,
       customer_id: customerId.value,
@@ -24,4 +24,4 @@ class CustomerSupportIssueOpened extends Message {
   }
 }
 
-export default CustomerSupportIssueOpened
+export default CustomerSupportIssueReported

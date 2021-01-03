@@ -2,6 +2,7 @@ import CustomerSupportAgentAvailability from '@domain/CustomerSupportAgent/Custo
 import CustomerSupportAgentId from '@domain/CustomerSupportAgent/CustomerSupportAgentId'
 import AggregateRoot from '../AggregateRoot'
 import CustomerSupportAgentJoined from './CustomerSupportAgentJoined'
+import CustomerSupportAgentBecameAvailable from './CustomerSupportAgentBecameAvailable'
 
 export default class CustomerSupportAgent extends AggregateRoot {
   private _id: CustomerSupportAgentId
@@ -23,9 +24,14 @@ export default class CustomerSupportAgent extends AggregateRoot {
     return instance
   }
 
-  public assign(): void {
+  public makeAssigned(): void {
     this._availability = CustomerSupportAgentAvailability.assigned()
     // TODO: instance.addToDomainEvents(CustomerSupportAgentAssignedToAnIssue)
+  }
+
+  public makeAvailable(): void {
+    this._availability = CustomerSupportAgentAvailability.available()
+    this.addToDomainEvents(CustomerSupportAgentBecameAvailable.with(this.id))
   }
 
   public release(): void {
