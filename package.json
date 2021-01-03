@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "local": "npx nodemon --watch src --exec npx ts-node -r tsconfig-paths/register src/index.ts "
+    "local": "npx nodemon --watch src --exec npx ts-node -r tsconfig-paths/register src/index.ts ",
+    "test": "mocha 'tests/*.ts' --recursive  --require ts-node/register --timeout 60000"
   },
   "author": "",
   "license": "ISC",
@@ -21,18 +22,24 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.2.14",
     "@types/inversify-restify-utils": "^2.0.0",
     "@types/lodash": "^4.14.165",
+    "@types/mocha": "^8.2.0",
     "@types/pino": "^6.3.4",
     "@types/restify": "^8.4.2",
     "@types/restify-errors": "^4.3.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
+    "axios": "^0.21.1",
+    "chai": "^4.2.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",

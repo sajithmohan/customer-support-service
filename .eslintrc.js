@@ -14,8 +14,12 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off"
   },
   parserOptions: {
-    project: './tsconfig.json'
+    project: [
+      './tsconfig.json',
+      'tests/*'
+    ]
   },
+  ignorePatterns: ['.eslintrc.js'],
   extends: [
     'airbnb-typescript/base',
     'eslint:recommended',

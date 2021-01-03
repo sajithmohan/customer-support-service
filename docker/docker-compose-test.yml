@@ -1,0 +1,34 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  customer-support-service:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../src:/usr/src/customer-support-service/src
+
+    depends_on:
+      - postgres
+  test:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile-test
+    volumes:
+      - ../src:/usr/src/customer-support-service/src
+      - ../tests:/usr/src/customer-support-service/tests
+    depends_on:
+      - customer-support-service
+    command: docker/wait-for-it.sh -t 3 postgres:5432 -- docker/wait-for-it.sh -t 10 customer-support-service:5000 -- npm run test
+
+  postgres:
+    image: postgres:9.6
+    volumes:
+      - ./postgresql:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: customer-support-service
+    ports:
+      - "5432:5432"

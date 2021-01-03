@@ -1,4 +1,3 @@
-import Message from 'utils/messaging/Message'
 import Handler from 'utils/messaging/Handler'
 import CustomerSupportIssueAssigned from '@domain/Issue/CustomerSupportIssueAssigned'
 import MessageBus from 'utils/messaging/MessageBus'

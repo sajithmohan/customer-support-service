@@ -1,5 +1,4 @@
 import CustomerSupportIssueTitle from '@domain/Issue/CustomerSupportIssueTitle'
-import CustomerSupportAgent from '@domain/CustomerSupportAgent/CustomerSupportAgent'
 import CustomerSupportIssueAssigned from '@domain/Issue/CustomerSupportIssueAssigned'
 import AggregateRoot from '../AggregateRoot'
 import CustomerId from '../CustomerId'

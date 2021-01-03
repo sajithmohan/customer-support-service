@@ -6,7 +6,8 @@
     "target": "ES2019",
     "types": [
       "reflect-metadata",
-      "node"
+      "node",
+      "mocha"
     ],
     "noImplicitAny": false,
     "allowJs": true,
@@ -32,6 +33,7 @@
   },
   "include": [
     "src/**/*",
+    "tests/**/*",
     "config.ts"
   ]
 }

@@ -1,0 +1,9 @@
+FROM node:12
+WORKDIR /usr/src/customer-support-service
+COPY package*.json ./
+COPY config.ts ./config.ts
+COPY . .
+RUN ls
+RUN npm install
+
+CMD [ "npm", "run", "test" ]

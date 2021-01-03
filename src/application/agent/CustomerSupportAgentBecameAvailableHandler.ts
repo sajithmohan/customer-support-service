@@ -12,7 +12,6 @@ class CustomerSupportAgentBecameAvailableHandler implements Handler<CustomerSupp
   }
 
   async handle(message: CustomerSupportAgentBecameAvailable): Promise<void> {
-    console.log('---------CustomerSupportAgentBecameAvailable------')
     await this._commandBus.publish(
       AssignAvailableIssueToAgent.for(message.id),
     )
